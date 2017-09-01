@@ -1,0 +1,13 @@
+# Version control files
+.git/
+.gitignore
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Log, temporary and history files
+log/
+tmp/
+.*_history

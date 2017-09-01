@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: gunicorn -b :8000 --reload app.wsgi
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"

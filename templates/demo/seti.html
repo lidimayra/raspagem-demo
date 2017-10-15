@@ -10,7 +10,7 @@
     <div class="col-md-6 col-md-offset-3">
       <form>
         <div class="form-group">
-          <label>Informe o nome de um(a) palestrante(a):</label>
+          <label>Informe o termo a ser buscado:</label>
           <input type="text" name="q" class="form-control">
         </div>
         <div>
@@ -21,11 +21,14 @@
       </br></br>
 
       <div>
-        <table class="table table-bordered">
-          {% for value in raw_values %}
-            <tr><td>{{ value }}</td></tr>
+        {% for talk in talks %}
+          <table class="table table-bordered">
+          {% for key, value in talk.items %}
+              <tr><td><strong>{{ key }}:</strong> {{ value }}</td></tr>
           {% endfor %}
-        </table>
+          </table>
+        {% endfor %}
+
         <a href="{% url 'index' %}">Página principal</a>
       </div>
     </div>

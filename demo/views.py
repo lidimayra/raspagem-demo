@@ -26,18 +26,22 @@ def fatec(request):
 
 def seti(request):
     query = request.GET.get('q', '')
-    speakers  = []
 
     url = f'http://seti.ufla.br/'
     html = urlopen(url)
     soup = BeautifulSoup(html.read(), 'html.parser')
     boxes = soup.findAll('div', { 'class': 'box-nome-palestrante' })
 
+    talks = []
+
     if (len(query)) > 0:
         for box in boxes:
             name = box.text
             if query.upper() in name:
-                speakers.append(box.text)
+                speaker = box.find('p', { 'class': 'nome-palestrante' }).text
+                talk  = box.find('p', { 'class': 'palestra' }).text
+                company = box.find('p', { 'class': 'empresa-palestrante' }).text
+                talks.append({ 'Palestrante': speaker, 'Empresa': company, 'Palestra': talk })
 
-    context_dict = { 'raw_values': speakers }
+    context_dict = { 'talks': talks }
     return render(request, 'demo/seti.html', context_dict)

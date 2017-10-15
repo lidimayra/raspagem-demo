@@ -23,3 +23,21 @@ def fatec(request):
 
     context_dict = { 'raw_values': teachers }
     return render(request, 'demo/fatec.html', context_dict)
+
+def seti(request):
+    query = request.GET.get('q', '')
+    speakers  = []
+
+    url = f'http://seti.ufla.br/'
+    html = urlopen(url)
+    soup = BeautifulSoup(html.read(), 'html.parser')
+    boxes = soup.findAll('div', { 'class': 'box-nome-palestrante' })
+
+    if (len(query)) > 0:
+        for box in boxes:
+            name = box.text
+            if query.upper() in name:
+                speakers.append(box.text)
+
+    context_dict = { 'raw_values': speakers }
+    return render(request, 'demo/seti.html', context_dict)

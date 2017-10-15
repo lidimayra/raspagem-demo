@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-def index(fatec):
-    pass
+def index(request):
+    return render(request, 'demo/index.html')
 
 def fatec(request):
     query = request.GET.get('q', '')

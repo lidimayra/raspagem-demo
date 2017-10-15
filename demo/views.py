@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-def index(request):
+def index(fatec):
+    pass
+
+def fatec(request):
     query = request.GET.get('q', '')
     teachers  = []
 
@@ -19,4 +22,4 @@ def index(request):
                 teachers.append(line.text)
 
     context_dict = { 'raw_values': teachers }
-    return render(request, 'demo/index.html', context_dict)
+    return render(request, 'demo/fatec.html', context_dict)

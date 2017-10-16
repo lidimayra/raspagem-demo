@@ -17,3 +17,6 @@ $ docker-compose up
 ```
 
 Para acessar a aplicação em seu navegador, utilize o endereço http://localhost:8000/demo/
+
+## Deploy
+Para apresentações eventuais, tenho feito o deploy desta aplicação no Google Cloud. Caso tenha interesse, as instruções estão disponíveis na [wiki](https://github.com/lidimayra/raspagem-demo/wiki/Deploy-no-Google-Cloud).

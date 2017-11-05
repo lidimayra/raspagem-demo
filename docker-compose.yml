@@ -1,6 +1,8 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
   web:
     build: .
     command: gunicorn -b :8000 --reload app.wsgi
@@ -8,3 +10,5 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    depends_on:
+      - db

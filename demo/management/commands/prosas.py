@@ -6,8 +6,20 @@ from bs4 import BeautifulSoup
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        url = 'https://prosas.com.br/editais/2653-1o-premio-projeteee-de-arquitetura-bioclimatica-categoria-estudante'
+        urls = []
+        for suffix in self.suffixes():
+            url = 'https://prosas.com.br/editais/' + suffix
+            self.create_call_notice(url)
 
+    def suffixes(self):
+        return [
+            '2653-1o-premio-projeteee-de-arquitetura-bioclimatica-categoria-estudante',
+            '3080-2o-edital-fomento-a-cultura-da-periferia-de-sao-paulo',
+            '2774-segunda-chamada-cepf-cerrado-2017',
+            '3062-premio-off-flip-de-literatura-contos'
+        ]
+
+    def create_call_notice(self, url):
         html = urlopen(url)
         soup = BeautifulSoup(html.read(), 'html.parser')
 
